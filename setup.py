@@ -44,10 +44,12 @@ setup(
         "Pillow>=9.5.0",
         "openpyxl>=3.0.0",
         "click>=8.0.0",
+        "gradio>=3.40.0",
     ],
     entry_points={
         "console_scripts": [
             "invoicextract=invoicextract.main:cli",
+            "invoicextract-webui=invoicextract.webui:main",
         ],
     },
     include_package_data=True,
