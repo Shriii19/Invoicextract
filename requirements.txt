@@ -27,3 +27,6 @@ loguru>=0.7.0
 
 # CLI
 click>=8.1.0
+
+# Web UI
+gradio>=3.40.0
