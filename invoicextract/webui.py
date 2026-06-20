@@ -7,8 +7,8 @@ import pandas as pd
 
 from invoicextract import InvoiceExtractor
 from invoicextract.exporters.csv_exporter import CSVExporter
-from invoicextract.exporters.json_exporter import JSONExporter
 from invoicextract.exporters.excel_exporter import ExcelExporter
+from invoicextract.exporters.json_exporter import JSONExporter
 
 logger = logging.getLogger(__name__)
 
@@ -50,32 +50,36 @@ def process_files(files):
         tax = f"{inv.tax_amount:.2f}" if inv.tax_amount is not None else "-"
         due = inv.due_date or "-"
         terms = inv.payment_terms or "-"
-        summary_rows.append({
-            "Invoice #": inv.invoice_number or "-",
-            "Vendor": inv.vendor_name or "-",
-            "Customer": inv.customer_name or "-",
-            "Date": inv.invoice_date or "-",
-            "Due Date": due,
-            "Subtotal": subtotal,
-            "Tax": tax,
-            "Total": total,
-            "Payment Terms": terms,
-            "Valid": "Yes" if inv.is_valid else "No",
-            "File": Path(inv.source_file).name if inv.source_file else "-",
-        })
+        summary_rows.append(
+            {
+                "Invoice #": inv.invoice_number or "-",
+                "Vendor": inv.vendor_name or "-",
+                "Customer": inv.customer_name or "-",
+                "Date": inv.invoice_date or "-",
+                "Due Date": due,
+                "Subtotal": subtotal,
+                "Tax": tax,
+                "Total": total,
+                "Payment Terms": terms,
+                "Valid": "Yes" if inv.is_valid else "No",
+                "File": Path(inv.source_file).name if inv.source_file else "-",
+            }
+        )
     summary_df = pd.DataFrame(summary_rows)
 
     item_rows = []
     for inv in invoices:
         inv_label = inv.invoice_number or "-"
         for item in inv.line_items:
-            item_rows.append({
-                "Invoice #": inv_label,
-                "Description": item.description,
-                "Qty": item.quantity,
-                "Unit Price": f"{item.unit_price:.2f}" if item.unit_price else "-",
-                "Amount": f"{item.amount:.2f}" if item.amount else "-",
-            })
+            item_rows.append(
+                {
+                    "Invoice #": inv_label,
+                    "Description": item.description,
+                    "Qty": item.quantity,
+                    "Unit Price": f"{item.unit_price:.2f}" if item.unit_price else "-",
+                    "Amount": f"{item.amount:.2f}" if item.amount else "-",
+                }
+            )
     cols = ["Invoice #", "Description", "Qty", "Unit Price", "Amount"]
     items_df = pd.DataFrame(item_rows, columns=cols) if item_rows else pd.DataFrame(columns=cols)
 
@@ -130,12 +134,10 @@ def clear_all():
 
 def build_app():
     with gr.Blocks(title="InvoiceXtract") as demo:
-        gr.Markdown(
-            """
+        gr.Markdown("""
             # InvoiceXtract
             Upload invoice PDFs or images to automatically extract structured data.
-            """
-        )
+            """)
 
         invoice_state = gr.State([])
 
