@@ -65,7 +65,7 @@ jobs:
       run: black --check invoicextract tests
     
     - name: Check import sorting with isort
-      run: isort --check-only invoicextract tests
+      run: isort --check-only --profile black invoicextract tests
     
     - name: Type check with mypy
       run: mypy invoicextract --ignore-missing-imports

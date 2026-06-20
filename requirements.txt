@@ -20,7 +20,7 @@ python-dotenv>=1.0.0
 Pillow>=9.5.0
 
 # Excel Export
-openpyxl>=3.10.0
+openpyxl>=3.1.0
 
 # Logging
 loguru>=0.7.0
