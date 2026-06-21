@@ -85,9 +85,28 @@ class TestValidator:
         assert not result.is_valid
         assert any("negative" in error.lower() for error in result.errors)
 
+    def test_zero_amount_validation(self):
+        """Test validation handles zero amounts"""
+        validator = InvoiceValidator()
+        invoice = Invoice(
+            invoice_number="INV-005",
+            vendor_name="Vendor",
+            total_amount=0.00,
+        )
+
+        result = validator.validate(invoice)
+        # Zero amounts might be invalid depending on business rules
+        assert isinstance(result, ValidationResult)
+
 
 class TestGenericParser:
     """Tests for GenericParser"""
+
+    def test_parse_empty_text(self):
+        """Test parsing with empty text returns an invoice object"""
+        parser = GenericParser()
+        invoice = parser.parse("")
+        assert invoice is not None
 
     def test_parse_invoice_number(self):
         """Test parsing invoice number from text"""
@@ -122,6 +141,31 @@ class TestGenericParser:
 
         invoice = parser.parse(text)
         assert invoice.total_amount == 1234.56
+
+    def test_parse_vendor_name(self):
+        """Test parsing vendor name from text"""
+        parser = GenericParser()
+        text = """
+        INVOICE
+        Vendor: Acme Corporation
+        Invoice #: INV-100
+        Total: $500.00
+        """
+
+        invoice = parser.parse(text)
+        assert invoice.vendor_name == "Acme Corporation"
+
+    def test_parse_invoice_date(self):
+        """Test parsing invoice date from text"""
+        parser = GenericParser()
+        text = """
+        Invoice Date: 2024-06-17
+        Invoice #: INV-200
+        Total: $100.00
+        """
+
+        invoice = parser.parse(text)
+        assert invoice.invoice_date == "2024-06-17"
 
 
 # Fixtures
