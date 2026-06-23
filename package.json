@@ -1,0 +1,8 @@
+{
+  "name": "invoicextract",
+  "version": "0.1.0",
+  "description": "Automated invoice data extraction",
+  "scripts": {
+    "dev": "python -m invoicextract.webui"
+  }
+}
