@@ -86,11 +86,11 @@ def extract(input_path: str, output: Optional[str], format: str, verbose: bool):
         exporter.export(invoices, output)
 
         logger.info(f"Successfully exported {len(invoices)} invoice(s) to {output}")
-        click.echo(f"✓ Extracted {len(invoices)} invoice(s) → {output}")
+        click.echo(f"[OK] Extracted {len(invoices)} invoice(s) -> {output}")
 
     except Exception as e:
         logger.error(f"Extraction failed: {e}")
-        click.echo(f"✗ Error: {e}", err=True)
+        click.echo(f"[ERR] Error: {e}", err=True)
         raise click.Abort()
 
 
