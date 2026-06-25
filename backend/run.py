@@ -6,8 +6,8 @@ Or from inside backend/:  python run.py
 import os
 import sys
 
-# Ensure the repo root is on sys.path so `invoicextract` package is importable
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# invoicextract/ lives inside backend/, so backend/ must be on sys.path
+ROOT = os.path.dirname(os.path.abspath(__file__))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
