@@ -107,6 +107,9 @@ class GenericParser:
             source_file=str(source_file) if source_file else None,
         )
 
+        if invoice.invoice_number:
+            invoice.invoice_number = invoice.invoice_number.lower()
+
         logger.debug(f"Parsed invoice: {invoice.invoice_number}")
         return invoice
 
