@@ -15,6 +15,7 @@ def get_page_count(pdf_path: Path) -> int:
     """Return the number of pages in a PDF."""
     try:
         import fitz
+
         with fitz.open(str(pdf_path)) as doc:
             return len(doc)
     except Exception as e:
@@ -26,6 +27,7 @@ def get_pdf_metadata(pdf_path: Path) -> dict:
     """Return the PDF metadata dict (author, title, creator, etc.)."""
     try:
         import fitz
+
         with fitz.open(str(pdf_path)) as doc:
             return doc.metadata or {}
     except Exception as e:
@@ -40,6 +42,7 @@ def is_scanned_pdf(pdf_path: Path, sample_pages: int = 3) -> bool:
     """
     try:
         import fitz
+
         with fitz.open(str(pdf_path)) as doc:
             pages = list(doc)[:sample_pages]
             total_chars = sum(len(p.get_text()) for p in pages)
@@ -53,6 +56,7 @@ def render_page_to_image(pdf_path: Path, page_number: int = 0, dpi: int = 150) -
     """Render a single PDF page to PNG bytes."""
     try:
         import fitz
+
         with fitz.open(str(pdf_path)) as doc:
             page = doc[page_number]
             mat = fitz.Matrix(dpi / 72, dpi / 72)

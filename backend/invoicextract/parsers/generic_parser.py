@@ -72,11 +72,16 @@ class GenericParser:
 
     DATE_FORMATS = [
         "%Y-%m-%d",
-        "%m/%d/%Y", "%d/%m/%Y",
-        "%m-%d-%Y", "%d-%m-%Y",
-        "%d.%m.%Y", "%m.%d.%Y",
-        "%d %B %Y", "%d %b %Y",
-        "%B %d, %Y", "%b %d, %Y",
+        "%m/%d/%Y",
+        "%d/%m/%Y",
+        "%m-%d-%Y",
+        "%d-%m-%Y",
+        "%d.%m.%Y",
+        "%m.%d.%Y",
+        "%d %B %Y",
+        "%d %b %Y",
+        "%B %d, %Y",
+        "%b %d, %Y",
         "%d %b. %Y",
     ]
 
@@ -92,7 +97,9 @@ class GenericParser:
             invoice_date=self._extract_date(text_lower, "date"),
             due_date=self._extract_date(text_lower, "due_date"),
             vendor_name=self._extract_vendor_name(text),
-            vendor_address=self._extract_address_block(text, ["from", "vendor", "seller", "bill from"]),
+            vendor_address=self._extract_address_block(
+                text, ["from", "vendor", "seller", "bill from"]
+            ),
             vendor_email=self._extract_field(text, "vendor_email"),
             vendor_phone=self._extract_field(text_lower, "vendor_phone"),
             customer_name=self._extract_customer_name(text),
@@ -210,31 +217,26 @@ class GenericParser:
 
     def _isolate_items_section(self, text: str) -> str:
         header = re.search(
-            r'\b(?:items?|description|services?|products?|details?)\b[^\n]*\n',
-            text, re.IGNORECASE
+            r"\b(?:items?|description|services?|products?|details?)\b[^\n]*\n", text, re.IGNORECASE
         )
         start = header.end() if header else 0
 
-        footer = re.search(
-            r'\n\s*(?:sub[\s\-]?total|total)\s*[:\$]',
-            text[start:], re.IGNORECASE
-        )
+        footer = re.search(r"\n\s*(?:sub[\s\-]?total|total)\s*[:\$]", text[start:], re.IGNORECASE)
         end = start + footer.start() if footer else len(text)
         return text[start:end]
 
     def _parse_numbered_items(self, section: str) -> list[LineItem]:
         """Matches:  1. Description - $100.00"""
         items = []
-        pattern = re.compile(
-            r'^\s*\d+[.)]\s+(.+?)\s*[-–]\s*\$?([\d,]+\.?\d*)\s*$',
-            re.MULTILINE
-        )
+        pattern = re.compile(r"^\s*\d+[.)]\s+(.+?)\s*[-–]\s*\$?([\d,]+\.?\d*)\s*$", re.MULTILINE)
         for m in pattern.finditer(section):
             try:
-                items.append(LineItem(
-                    description=m.group(1).strip(),
-                    amount=float(m.group(2).replace(",", "")),
-                ))
+                items.append(
+                    LineItem(
+                        description=m.group(1).strip(),
+                        amount=float(m.group(2).replace(",", "")),
+                    )
+                )
             except ValueError:
                 continue
         return items
@@ -244,8 +246,8 @@ class GenericParser:
         items = []
         skip_words = {"description", "item", "service", "qty", "amount", "price", "total", "unit"}
         pattern = re.compile(
-            r'^([A-Za-z][^\t\n$]{3,50}?)\s{2,}(\d+\.?\d*)?\s*\$?([\d,]+\.?\d*)\s+\$?([\d,]+\.?\d*)\s*$',
-            re.MULTILINE
+            r"^([A-Za-z][^\t\n$]{3,50}?)\s{2,}(\d+\.?\d*)?\s*\$?([\d,]+\.?\d*)\s+\$?([\d,]+\.?\d*)\s*$",
+            re.MULTILINE,
         )
         for m in pattern.finditer(section):
             description = m.group(1).strip()
@@ -256,8 +258,14 @@ class GenericParser:
                 unit_price = float(m.group(3).replace(",", "")) if m.group(3) else None
                 amount = float(m.group(4).replace(",", "")) if m.group(4) else None
                 if description and amount:
-                    items.append(LineItem(description=description, quantity=qty,
-                                          unit_price=unit_price, amount=amount))
+                    items.append(
+                        LineItem(
+                            description=description,
+                            quantity=qty,
+                            unit_price=unit_price,
+                            amount=amount,
+                        )
+                    )
             except (ValueError, AttributeError):
                 continue
         return items
@@ -266,15 +274,16 @@ class GenericParser:
         """Matches:  Product A ........ $100.00"""
         items = []
         pattern = re.compile(
-            r'^([A-Za-z][^\n$]{3,50}?)\s*[.\s]{3,}\s*\$?([\d,]+\.?\d*)\s*$',
-            re.MULTILINE
+            r"^([A-Za-z][^\n$]{3,50}?)\s*[.\s]{3,}\s*\$?([\d,]+\.?\d*)\s*$", re.MULTILINE
         )
         for m in pattern.finditer(section):
             try:
-                items.append(LineItem(
-                    description=m.group(1).strip(),
-                    amount=float(m.group(2).replace(",", "")),
-                ))
+                items.append(
+                    LineItem(
+                        description=m.group(1).strip(),
+                        amount=float(m.group(2).replace(",", "")),
+                    )
+                )
             except ValueError:
                 continue
         return items

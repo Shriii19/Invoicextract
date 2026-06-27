@@ -19,7 +19,11 @@ from invoicextract.exporters.json_exporter import JSONExporter
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title="InvoiceXtract API", version="0.1.0", description="Extract structured data from PDF invoices")
+app = FastAPI(
+    title="InvoiceXtract API",
+    version="0.1.0",
+    description="Extract structured data from PDF invoices",
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -56,7 +60,9 @@ async def extract_invoice(file: UploadFile = File(...)):
     """Upload a PDF/image invoice and receive structured JSON data."""
     ext = Path(file.filename).suffix.lower()
     if ext not in ALLOWED_EXTENSIONS:
-        raise HTTPException(400, f"Unsupported file type '{ext}'. Allowed: {', '.join(ALLOWED_EXTENSIONS)}")
+        raise HTTPException(
+            400, f"Unsupported file type '{ext}'. Allowed: {', '.join(ALLOWED_EXTENSIONS)}"
+        )
 
     content = await file.read()
     tmp_path = _save_upload(file, content)
