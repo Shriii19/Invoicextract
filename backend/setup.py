@@ -1,7 +1,13 @@
 from setuptools import setup, find_packages
+from pathlib import Path
 
-with open("README.md", "r", encoding="utf-8") as fh:
-    long_description = fh.read()
+# Read the README from the parent directory
+readme_path = Path(__file__).parent.parent / "Readme.md"
+try:
+    with open(readme_path, "r", encoding="utf-8") as fh:
+        long_description = fh.read()
+except FileNotFoundError:
+    long_description = "InvoiceXtract - Automated invoice data extraction from PDFs"
 
 setup(
     name="invoicextract",
