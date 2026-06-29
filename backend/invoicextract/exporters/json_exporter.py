@@ -7,12 +7,13 @@ import logging
 from pathlib import Path
 from typing import List, Union
 
+from invoicextract.exporters.base_exporter import BaseExporter
 from invoicextract.models.invoice import Invoice
 
 logger = logging.getLogger(__name__)
 
 
-class JSONExporter:
+class JSONExporter(BaseExporter):
     """
     Exports invoice data to JSON format
     """
