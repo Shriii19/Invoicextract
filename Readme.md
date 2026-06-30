@@ -248,14 +248,6 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) file for
 
 ---
 
-## 📞 Support
-
-- **Issues** - Use [GitHub Issues](https://github.com/yourusername/InvoiceXtract/issues)
-- **Discussions** - Use [GitHub Discussions](https://github.com/yourusername/InvoiceXtract/discussions)
-- **Email** - contact@invoicextract.dev
-
----
-
 ## 🎓 Learning Resources
 
 - [Python Documentation](https://docs.python.org/3/)
