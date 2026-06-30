@@ -232,13 +232,9 @@ We welcome contributions from everyone! Please see our [Contributing Guide](CONT
 - [ ] Documentation
 - [ ] Testing
 
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
+
 
 ## 🌟 Acknowledgments
 
