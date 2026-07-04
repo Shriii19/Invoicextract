@@ -4,29 +4,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light dark" />
-  <title>InvoiceXtract — Offline Invoice Parser</title>
+  <title>InvoiceXtract</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="aurora"></div>
-
   <header>
     <div class="header-inner">
       <div class="logo">
         <span class="logo-mark">
-          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
             <polyline points="14 2 14 8 20 8"/>
             <line x1="16" y1="13" x2="8" y2="13"/>
             <line x1="16" y1="17" x2="8" y2="17"/>
-            <polyline points="10 9 9 9 8 9"/>
           </svg>
         </span>
         InvoiceXtract
       </div>
-      <span class="header-sub">Offline PDF Invoice Parser</span>
+      <span class="header-sub">Offline invoice parser</span>
       <span class="header-spacer"></span>
-      <span class="offline-pill"><span class="dot"></span> 100% Local</span>
+      <span class="offline-pill"><span class="dot"></span> Runs locally</span>
     </div>
   </header>
 
@@ -35,35 +32,31 @@
     <section class="upload-section" id="uploadSection">
 
       <div class="hero">
-        <span class="hero-eyebrow">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          No cloud · No API keys
-        </span>
-        <h1>Turn invoices into <span class="grad">structured data</span></h1>
-        <p>Drop a PDF or image and extract vendor, totals, dates and line items in seconds — right on your machine.</p>
+        <span class="hero-eyebrow">Invoice → structured data</span>
+        <h1>Read an invoice into clean, structured fields.</h1>
+        <p>Drop a PDF or scan below. Parsing happens entirely on your machine — nothing is uploaded.</p>
       </div>
 
       <div class="upload-card">
         <div class="drop-zone" id="dropZone">
           <div class="drop-icon">
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
               <polyline points="17 8 12 3 7 8"/>
               <line x1="12" y1="3" x2="12" y2="15"/>
             </svg>
           </div>
           <p class="drop-title">Drop your invoice here</p>
-          <p class="drop-sub">PDF, PNG, JPG, TIFF supported</p>
+          <p class="drop-sub">PDF, PNG, JPG or TIFF</p>
           <label class="browse-btn">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
-            Browse File
+            Browse files
             <input type="file" id="fileInput" accept=".pdf,.png,.jpg,.jpeg,.tiff" hidden />
           </label>
         </div>
 
         <div class="file-selected hidden" id="fileSelected">
           <span class="file-ic">
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
               <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
               <polyline points="14 2 14 8 20 8"/>
             </svg>
@@ -73,7 +66,7 @@
         </div>
 
         <button class="extract-btn" id="extractBtn" disabled>
-          <span id="btnText">Extract Invoice Data</span>
+          <span id="btnText">Extract invoice data</span>
           <span id="btnSpinner" class="spinner hidden"></span>
         </button>
 
@@ -82,20 +75,16 @@
 
       <div class="features">
         <span class="feature">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           Private &amp; offline
         </span>
         <span class="feature">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-          Instant extraction
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          Export CSV, Excel, JSON
         </span>
         <span class="feature">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-          CSV · Excel · JSON
-        </span>
-        <span class="feature">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-          Line-item detection
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          Detects line items
         </span>
       </div>
     </section>
@@ -103,7 +92,7 @@
     <!-- Results Section -->
     <section class="results-section hidden" id="resultsSection">
 
-      <!-- Top bar: invoice number + validity + downloads -->
+      <!-- Top bar -->
       <div class="results-header">
         <div>
           <div class="invoice-num" id="invoiceNum">Invoice #—</div>
@@ -113,43 +102,37 @@
           </div>
         </div>
         <div class="download-group">
-          <span class="download-label">Download as</span>
+          <span class="download-label">Export</span>
           <button class="dl-btn" id="dlCsv">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             CSV
           </button>
           <button class="dl-btn" id="dlExcel">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Excel
           </button>
           <button class="dl-btn" id="dlJson">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             JSON
           </button>
           <button class="new-btn" id="newBtn">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-            New Invoice
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            New
           </button>
         </div>
       </div>
 
-      <!-- Dates row -->
+      <!-- Dates -->
       <div class="info-grid two-col">
         <div class="info-card">
-          <span class="card-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-          </span>
           <div class="card-body">
-            <div class="card-label">Invoice Date</div>
+            <div class="card-label">Invoice date</div>
             <div class="card-value" id="invoiceDate">—</div>
           </div>
         </div>
         <div class="info-card">
-          <span class="card-icon teal">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </span>
           <div class="card-body">
-            <div class="card-label">Due Date</div>
+            <div class="card-label">Due date</div>
             <div class="card-value" id="dueDate">—</div>
           </div>
         </div>
@@ -158,9 +141,6 @@
       <!-- Vendor / Customer -->
       <div class="info-grid two-col">
         <div class="info-card">
-          <span class="card-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/><line x1="9" y1="9" x2="9" y2="9"/><line x1="9" y1="13" x2="9" y2="13"/><line x1="9" y1="17" x2="9" y2="17"/></svg>
-          </span>
           <div class="card-body">
             <div class="card-label">Vendor</div>
             <div class="card-value" id="vendorName">—</div>
@@ -170,11 +150,8 @@
           </div>
         </div>
         <div class="info-card">
-          <span class="card-icon teal">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          </span>
           <div class="card-body">
-            <div class="card-label">Bill To</div>
+            <div class="card-label">Bill to</div>
             <div class="card-value" id="customerName">—</div>
             <div class="card-detail addr" id="customerAddress"></div>
           </div>
@@ -183,28 +160,19 @@
 
       <!-- Amounts -->
       <div class="info-grid three-col">
-        <div class="info-card amount-card">
-          <span class="card-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-          </span>
+        <div class="info-card">
           <div class="card-body">
             <div class="card-label">Subtotal</div>
             <div class="card-value amount" id="subtotal">—</div>
           </div>
         </div>
-        <div class="info-card amount-card">
-          <span class="card-icon teal">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
-          </span>
+        <div class="info-card">
           <div class="card-body">
             <div class="card-label">Tax</div>
             <div class="card-value amount" id="taxAmount">—</div>
           </div>
         </div>
-        <div class="info-card amount-card total-card">
-          <span class="card-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-          </span>
+        <div class="info-card total-card">
           <div class="card-body">
             <div class="card-label">Total</div>
             <div class="card-value amount total-amount" id="totalAmount">—</div>
@@ -215,11 +183,8 @@
       <!-- Payment terms -->
       <div class="info-grid one-col" id="paymentRow">
         <div class="info-card">
-          <span class="card-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-          </span>
           <div class="card-body">
-            <div class="card-label">Payment Terms</div>
+            <div class="card-label">Payment terms</div>
             <div class="card-value" id="paymentTerms">—</div>
           </div>
         </div>
@@ -227,10 +192,7 @@
 
       <!-- Line Items -->
       <div class="line-items-section" id="lineItemsSection">
-        <div class="section-title">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-          Line Items
-        </div>
+        <div class="section-title">Line items</div>
         <div class="table-scroll">
           <table class="line-items-table">
             <thead>
@@ -238,7 +200,7 @@
                 <th>#</th>
                 <th>Description</th>
                 <th class="right">Qty</th>
-                <th class="right">Unit Price</th>
+                <th class="right">Unit price</th>
                 <th class="right">Amount</th>
               </tr>
             </thead>
@@ -251,7 +213,7 @@
   </main>
 
   <footer class="site-footer">
-    <strong>InvoiceXtract</strong> — runs entirely on your machine. No data ever leaves your device.
+    <strong>InvoiceXtract</strong> — runs entirely on your machine. No data leaves your device.
   </footer>
 
   <script src="app.js"></script>
