@@ -38,7 +38,7 @@ ALLOWED_EXTENSIONS = {".pdf", ".png", ".jpg", ".jpeg", ".tiff"}
 
 
 def _save_upload(file: UploadFile, content: bytes) -> Path:
-    ext = Path(file.filename).suffix.lower()
+    ext = Path(file.filename or "").suffix.lower()
     tmp = tempfile.NamedTemporaryFile(delete=False, suffix=ext)
     tmp.write(content)
     tmp.close()
@@ -58,6 +58,8 @@ async def health():
 @app.post("/api/extract")
 async def extract_invoice(file: UploadFile = File(...)):
     """Upload a PDF/image invoice and receive structured JSON data."""
+    if not file.filename:
+        raise HTTPException(400, "No filename provided")
     ext = Path(file.filename).suffix.lower()
     if ext not in ALLOWED_EXTENSIONS:
         raise HTTPException(
@@ -127,6 +129,8 @@ async def extract_and_download(
     format: str = Form("csv"),
 ):
     """Upload a PDF/image invoice and download as CSV, Excel, or JSON."""
+    if not file.filename:
+        raise HTTPException(400, "No filename provided")
     ext = Path(file.filename).suffix.lower()
     if ext not in ALLOWED_EXTENSIONS:
         raise HTTPException(400, f"Unsupported file type '{ext}'")
