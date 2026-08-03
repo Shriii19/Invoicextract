@@ -242,14 +242,7 @@ We welcome contributions from everyone! Please see our [Contributing Guide](CONT
 - OCR powered by [EasyOCR](https://github.com/JaidedAI/EasyOCR)
 - Data processing with [Pandas](https://pandas.pydata.org/)
 
----
 
-## 🎓 Learning Resources
-
-- [Python Documentation](https://docs.python.org/3/)
-- [PDF Processing in Python](https://realpython.com/pdf-python/)
-- [Regular Expressions](https://docs.python.org/3/library/re.html)
-- [Testing with Pytest](https://docs.pytest.org/)
 
 ---
 
