@@ -235,15 +235,6 @@ We welcome contributions from everyone! Please see our [Contributing Guide](CONT
 
 ---
 
-
-## 🌟 Acknowledgments
-
-- Built with [PyMuPDF](https://pymupdf.readthedocs.io/) and [pdfplumber](https://github.com/jsvine/pdfplumber)
-- OCR powered by [EasyOCR](https://github.com/JaidedAI/EasyOCR)
-- Data processing with [Pandas](https://pandas.pydata.org/)
-
-
-
 ---
 
 **Made with ❤️ by the open-source community**
